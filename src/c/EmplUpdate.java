@@ -30,6 +30,8 @@ public class EmplUpdate implements Initializable{
     DeptOperations deptO=new DeptOperations();
     EmplOperations emplO=new EmplOperations();
 
+    private m.Empl previous_empl=Empl.employeeToUpdate;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         id.setEditable(false);
@@ -63,6 +65,13 @@ public class EmplUpdate implements Initializable{
         Empl.emplTv.setItems(data);
         Empl.primaryStage.close();
 
+    }
+
+    public void emplUpdateResetClick(){
+        id.setText(previous_empl.getId()+"");
+        fname.setText(previous_empl.getFname());
+        lname.setText(previous_empl.getLname());
+        dept.setValue(previous_empl.getDept());
     }
 
 

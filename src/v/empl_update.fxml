@@ -34,6 +34,6 @@
       <ComboBox fx:id="dept" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button fx:id="emplUpdateOk" mnemonicParsing="false" onAction="#emplUpdateOkClick" text="OK" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-      <Button mnemonicParsing="false" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Button fx:id="emplUpdateReset" mnemonicParsing="false" onAction="#emplUpdateResetClick" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="4" />
    </children>
 </GridPane>
