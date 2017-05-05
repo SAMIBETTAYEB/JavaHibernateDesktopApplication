@@ -1,5 +1,6 @@
 package c;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -32,38 +33,43 @@ public class Empl implements Initializable {
 
     public static m.Empl employeeToUpdate;
 
+    TableColumn cId,cFname,cLname,cIdDept;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
 
 
-//        new Thread(()->{
+
+        new Thread(()->{
 
 
-        System.out.println(getClass().getResource("../v/EmplStyle.css").toExternalForm());
-        emplTv.getParent().getStylesheets().add(getClass().getResource("../v/EmplStyle.css").toExternalForm());
-        emplTv.setVisible(true);
-        Label l=new Label("Loading...");
-        l.setFont(new Font("Arial",35.0));
-        emplTv.setPlaceholder(l);
-        TableColumn cId=new TableColumn("ID");
-        TableColumn cFname=new TableColumn("First Name");
-        TableColumn cLname=new TableColumn("Last Name");
-        TableColumn cIdDept=new TableColumn("Departement");
+        //System.out.println(getClass().getResource("../v/EmplStyle.css").toExternalForm());emplTv.getParent().getStylesheets().add(getClass().getResource("../v/EmplStyle.css").toExternalForm());
+            Platform.runLater(()->{
+                emplTv.setVisible(true);
+                Label l=new Label("Loading...");
+                l.setFont(new Font("Arial",35.0));
+                emplTv.setPlaceholder(l);
+                cId=new TableColumn("ID");
+                cFname=new TableColumn("First Name");
+                cLname=new TableColumn("Last Name");
+                cIdDept=new TableColumn("Departement");
 
-        emplTv.getColumns().add(cId);
-        emplTv.getColumns().add(cFname);
-        emplTv.getColumns().add(cLname);
-        emplTv.getColumns().add(cIdDept);
+                emplTv.getColumns().add(cId);
+                emplTv.getColumns().add(cFname);
+                emplTv.getColumns().add(cLname);
+                emplTv.getColumns().add(cIdDept);
 
-        emplTv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println(emplTv.getSelectionModel().getSelectedIndex());
+                emplTv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println(emplTv.getSelectionModel().getSelectedIndex());
 
-                System.out.println(((m.Empl)emplTv.getSelectionModel().getSelectedItem()).getFname());
-            }
-        });
+                        System.out.println(((m.Empl)emplTv.getSelectionModel().getSelectedItem()).getFname());
+                    }
+                });
+            });
+
 
 
 
@@ -72,23 +78,26 @@ public class Empl implements Initializable {
 
         data.addAll(emplOperations.getAll());
 
-        for (m.Empl e:emplOperations.getAll()) {
-            System.out.println(e.getId());
-        }
+//        for (m.Empl e:emplOperations.getAll()) {
+//            System.out.println(e.getId());
+//        }
 
         cId.setCellValueFactory(new PropertyValueFactory<m.Empl,Integer>("id"));
         cFname.setCellValueFactory(new PropertyValueFactory<m.Empl,String>("fname"));
         cLname.setCellValueFactory(new PropertyValueFactory<m.Empl,String>("lname"));
 //        cIdDept.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("dept"));
 
-        emplTv.setItems(data);
+            Platform.runLater(()->{
+                emplTv.setItems(data);
 
-            TableColumn cIdDeptId=new TableColumn("ID");
-            TableColumn cIdDeptLabel=new TableColumn("Label");
-            cIdDept.getColumns().addAll(cIdDeptId,cIdDeptLabel);
-            cIdDeptId.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("id_dept"));
-            cIdDeptLabel.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("label_dept"));
-//        }).start();
+                TableColumn cIdDeptId=new TableColumn("ID");
+                TableColumn cIdDeptLabel=new TableColumn("Label");
+                cIdDept.getColumns().addAll(cIdDeptId,cIdDeptLabel);
+                cIdDeptId.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("id_dept"));
+                cIdDeptLabel.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("label_dept"));
+            });
+
+        }).start();
 
 
 
