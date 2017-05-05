@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" prefHeight="549.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="c.Main">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Button fx:id="btnEmp" mnemonicParsing="false" onAction="#btnEmpClick" prefHeight="100.0" prefWidth="224.0" text="Employees" />
+      <Button fx:id="btnDept" mnemonicParsing="false" onAction="#btnDeptClick" prefHeight="102.0" prefWidth="237.0" text="Departementns" GridPane.columnIndex="2" />
+      <Separator orientation="VERTICAL" prefHeight="556.0" prefWidth="44.0" GridPane.columnIndex="1" />
+   </children>
+</GridPane>
