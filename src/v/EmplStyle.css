@@ -4,3 +4,7 @@
 .t2{
     -fx-background-color: #FFFFFF;
 }
+.c1{
+    -fx-background-color: brown;
+    -fx-text-fill: #FFFFFF;
+}

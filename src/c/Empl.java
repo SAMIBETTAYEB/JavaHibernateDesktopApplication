@@ -98,6 +98,24 @@ public class Empl implements Initializable {
                 cIdDeptLabel.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("label_dept"));
 
 
+                cIdDeptId.setCellFactory(new Callback<TableColumn, TableCell>() {
+                    @Override
+                    public TableCell call(TableColumn param) {
+                        return new TableCell(){
+                            @Override
+                            protected void updateItem(Object item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if(empty) return;
+                                if(Integer.parseInt(item.toString())>=2){
+                                    getStyleClass().add("c1");
+
+                                }
+                                    setText(item.toString());
+                            }
+                        };
+                    }
+                });
+
                 emplTv.setRowFactory(new Callback<TableView, TableRow>() {
                     @Override
                     public TableRow call(TableView param) {
