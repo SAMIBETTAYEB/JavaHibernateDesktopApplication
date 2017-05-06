@@ -9,13 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import m.Dept;
 import m.EmplOperations;
 
@@ -44,8 +43,10 @@ public class Empl implements Initializable {
         new Thread(()->{
 
 
-        //System.out.println(getClass().getResource("../v/EmplStyle.css").toExternalForm());emplTv.getParent().getStylesheets().add(getClass().getResource("../v/EmplStyle.css").toExternalForm());
+        //System.out.println(getClass().getResource("../v/EmplStyle.css").toExternalForm());
+
             Platform.runLater(()->{
+                emplTv.getParent().getStylesheets().add(getClass().getResource("../v/EmplStyle.css").toExternalForm());
                 emplTv.setVisible(true);
                 Label l=new Label("Loading...");
                 l.setFont(new Font("Arial",35.0));
@@ -95,6 +96,27 @@ public class Empl implements Initializable {
                 cIdDept.getColumns().addAll(cIdDeptId,cIdDeptLabel);
                 cIdDeptId.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("id_dept"));
                 cIdDeptLabel.setCellValueFactory(new PropertyValueFactory<m.Empl, Dept>("label_dept"));
+
+
+                emplTv.setRowFactory(new Callback<TableView, TableRow>() {
+                    @Override
+                    public TableRow call(TableView param) {
+                        return new TableRow<m.Empl>(){
+                            @Override
+                            protected void updateItem(m.Empl item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if(empty==true) return;
+                                if (getIndex() % 2==0) {
+                                    getStyleClass().add("t2");
+                                } else {
+                                    getStyleClass().add("t1");
+                                }
+                            }
+                        };
+                    }
+                });
+
+
             });
 
         }).start();
