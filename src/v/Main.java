@@ -19,7 +19,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Employees - Departements Management System");
         //primaryStage.setMaximized(true);
-        primaryStage.setScene(new Scene(root));
+        Scene scene=new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("EmplStyle.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }

@@ -8,3 +8,17 @@
     -fx-background-color: brown;
     -fx-text-fill: #FFFFFF;
 }
+.scene{
+    -fx-background-image: url("background1.jpg");
+}
+.btn{
+    -fx-background-color: coral;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 25px;
+}
+.btn:pressed{
+    -fx-background-color: #EE6E40;
+}
+.btn:hover{
+    -fx-cursor: hand;
+}
