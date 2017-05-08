@@ -1,6 +1,8 @@
 package c;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -30,6 +32,8 @@ public class Empl implements Initializable {
 
     @FXML
     public static TableView emplTv;
+    @FXML
+    public Button btnUpdateEmpl;
 
     public static m.Empl employeeToUpdate;
 
@@ -41,7 +45,7 @@ public class Empl implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
+        btnUpdateEmpl.setDisable(true);
 
         new Thread(()->{
 
@@ -143,11 +147,28 @@ public class Empl implements Initializable {
         }).start();
 
 
+        emplTv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if(emplTv.getSelectionModel().getSelectedItem()==null){
+                    btnUpdateEmpl.setDisable(true);
+                }else{
+                    btnUpdateEmpl.setDisable(false);
+                }
+            }
+        });
+
+
 
     }
 
     public static Stage primaryStage=new Stage();
     public void btnUpdateEmplClick() throws Exception{
+        if(emplTv.getSelectionModel().getSelectedItem()==null){
+            Tooltip t=new Tooltip("Hello");
+            btnUpdateEmpl.setTooltip(t);
+            return ;
+        }
         m.Empl employee = (m.Empl) emplTv.getSelectionModel().getSelectedItem();
         System.out.println("You want to update the employee: ");
         System.out.println("{\n"+employee.getId());

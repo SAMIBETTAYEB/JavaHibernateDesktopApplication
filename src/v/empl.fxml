@@ -27,7 +27,7 @@
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#btnAddEmplClick" prefHeight="53.0" prefWidth="452.0" text="Add" />
-            <Button mnemonicParsing="false" onAction="#btnUpdateEmplClick" prefHeight="47.0" prefWidth="452.0" text="update" GridPane.columnIndex="1" />
+            <Button fx:id="btnUpdateEmpl" mnemonicParsing="false" onAction="#btnUpdateEmplClick" prefHeight="47.0" prefWidth="452.0" text="update" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </bottom>
