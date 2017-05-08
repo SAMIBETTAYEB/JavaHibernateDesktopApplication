@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import m.Dept;
@@ -28,6 +29,8 @@ public class EmplUpdate implements Initializable{
     private TextField lname;
     @FXML
     private ComboBox dept;
+    @FXML
+    private Label idLabel;
 
     DeptOperations deptO=new DeptOperations();
     EmplOperations emplO=new EmplOperations();
@@ -37,21 +40,24 @@ public class EmplUpdate implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        id.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                char ar[] = event.getCharacter().toCharArray();
-                char ch = ar[event.getCharacter().toCharArray().length - 1];
-                if (!(ch >= '0' && ch <= '9')) {
-                    System.out.println("The char you entered is not a number");
-                    event.consume();
-                }
-            }
-        });
+//        id.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//                char ar[] = event.getCharacter().toCharArray();
+//                char ch = ar[event.getCharacter().toCharArray().length - 1];
+//                if (!(ch >= '0' && ch <= '9')) {
+//                    System.out.println("The char you entered is not a number");
+//                    event.consume();
+//                }
+//            }
+//        });
 
         if(Empl.addOrEdit.equalsIgnoreCase("ADD")){
-
+            idLabel.setVisible(false);
+            id.setVisible(false);
         }else if(Empl.addOrEdit.equalsIgnoreCase("EDIT")){
+            idLabel.setVisible(true);
+            id.setVisible(true);
         id.setEditable(false);
         id.setText(Empl.employeeToUpdate.getId()+"");
         fname.setText(Empl.employeeToUpdate.getFname());
@@ -72,6 +78,8 @@ public class EmplUpdate implements Initializable{
 
 
     public void emplUpdateOkClick(){
+        if(Empl.addOrEdit.equalsIgnoreCase("EDIT")){
+
 //        m.Empl empl=new m.Empl(fname.getText(),lname.getText(),(Dept) dept.getSelectionModel().getSelectedItem());
 //        empl.setId(Integer.parseInt(id.getText()));
         Empl.employeeToUpdate.setFname(fname.getText());
@@ -83,6 +91,14 @@ public class EmplUpdate implements Initializable{
         data.addAll(emplO.getAll());
         Empl.emplTv.setItems(data);
         Empl.primaryStage.close();
+        }else if(Empl.addOrEdit.equalsIgnoreCase("ADD")){
+            m.Empl empl=new m.Empl(fname.getText().toString(),lname.getText().toString(),(Dept)dept.getSelectionModel().getSelectedItem());
+            emplO.add(empl);
+            ObservableList data = FXCollections.observableArrayList();
+            data.addAll(emplO.getAll());
+            Empl.emplTv.setItems(data);
+            Empl.primaryStage.close();
+        }
 
     }
 
@@ -93,6 +109,9 @@ public class EmplUpdate implements Initializable{
         dept.setValue(previous_empl.getDept());
     }
 
+    public void emplUpdateCancelClick(){
+        Empl.primaryStage.close();
+    }
 
 
 }
