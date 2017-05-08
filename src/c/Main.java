@@ -3,6 +3,7 @@ package c;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -17,6 +18,7 @@ public class Main {
         primaryStage.setTitle("Employees - Departements Management System");
         primaryStage.setMaximized(true);
         primaryStage.setScene(new Scene(root));
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.show();
     }
 

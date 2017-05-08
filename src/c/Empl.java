@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import m.Dept;
@@ -31,6 +32,8 @@ public class Empl implements Initializable {
     public static TableView emplTv;
 
     public static m.Empl employeeToUpdate;
+
+    public static String addOrEdit;
 
     TableColumn cId,cFname,cLname,cIdDept;
 
@@ -154,16 +157,34 @@ public class Empl implements Initializable {
         System.out.println(employee.getDept().getLabel()+"}");
         this.employeeToUpdate=employee;
 
-
+        addOrEdit="EDIT";
         Parent root = FXMLLoader.load(getClass().getResource("../v/empl_update.fxml"));
         primaryStage.setTitle("Update the selected employee - Departements Management System");
         //primaryStage.setMaximized(true);
+        try{
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+        }catch (Exception e){
+
+        }
         primaryStage.setScene(new Scene(root));
+
         primaryStage.show();
 
+    }
 
 
+    public void btnAddEmplClick() throws Exception{
+        addOrEdit="ADD";
+        Parent root = FXMLLoader.load(getClass().getResource("../v/empl_update.fxml"));
+        primaryStage.setTitle("Add a new employee - Departements Management System");
+        //primaryStage.setMaximized(true);
+        try{
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+        }catch (Exception e){
 
+        }
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
 

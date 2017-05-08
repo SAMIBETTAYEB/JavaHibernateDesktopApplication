@@ -26,7 +26,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="452.0" text="Add" />
+            <Button mnemonicParsing="false" onAction="#btnAddEmplClick" prefHeight="53.0" prefWidth="452.0" text="Add" />
             <Button mnemonicParsing="false" onAction="#btnUpdateEmplClick" prefHeight="47.0" prefWidth="452.0" text="update" GridPane.columnIndex="1" />
          </children>
       </GridPane>

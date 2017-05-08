@@ -21,7 +21,7 @@ public class Empl extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("empl.fxml"));
-        primaryStage.setTitle("Empl");
+        primaryStage.setTitle("Employees");
         primaryStage.setMaximized(true);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

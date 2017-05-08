@@ -2,10 +2,12 @@ package c;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import m.Dept;
 import m.DeptOperations;
 import m.EmplOperations;
@@ -34,11 +36,28 @@ public class EmplUpdate implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        id.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                char ar[] = event.getCharacter().toCharArray();
+                char ch = ar[event.getCharacter().toCharArray().length - 1];
+                if (!(ch >= '0' && ch <= '9')) {
+                    System.out.println("The char you entered is not a number");
+                    event.consume();
+                }
+            }
+        });
+
+        if(Empl.addOrEdit.equalsIgnoreCase("ADD")){
+
+        }else if(Empl.addOrEdit.equalsIgnoreCase("EDIT")){
         id.setEditable(false);
         id.setText(Empl.employeeToUpdate.getId()+"");
         fname.setText(Empl.employeeToUpdate.getFname());
         lname.setText(Empl.employeeToUpdate.getLname());
         dept.setValue(Empl.employeeToUpdate.getDept());
+            }
         ObservableList data = FXCollections.observableArrayList();
 
         data.addAll(deptO.getAll());
